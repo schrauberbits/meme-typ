@@ -37,7 +37,7 @@ async function kopieren(auto){
     // ClipboardItem sofort im Tipp anlegen (Safari), das PNG kommt als Promise nach
     await navigator.clipboard.write([new ClipboardItem({'image/png':pngPromise})]);
     $('status').innerHTML='<span class=ok>Kopiert</span> – jetzt einfügen, wo du es brauchst.';return true;
-  }catch(e){if(!auto)$('status').textContent=e.message&&e.message.length<140?e.message:'Kopieren nicht möglich – nimm „Bild speichern“.';return false;}
+  }catch(e){if(!auto)$('status').textContent='Dein Browser hat das Kopieren blockiert. Halte das Bild gedrückt und wähle „Kopieren“ – oder nimm „Bild speichern“.';return false;}
 }
 async function versucheAuto(){if(document.hasFocus&&document.hasFocus()){const ok=await kopieren(true);if(!ok)$('status').textContent='Tippe auf „Bild kopieren“.';}else $('status').textContent='Tippe auf „Bild kopieren“.';}
 $('kopieren').onclick=()=>kopieren(false);

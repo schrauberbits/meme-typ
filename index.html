@@ -358,6 +358,8 @@ function tippen(i){
   if(reihe.includes(i)){zurueck(i);return;}
   const frei=reihe.indexOf(null);if(frei>=0)ablegen(i,frei);
 }
+// Klick ohne Zeiger (Screenreader, Tastatur-Klick): detail===0
+board.addEventListener('click',e=>{if(e.detail===0){const m=e.target.closest('.meme');if(m)tippen(+m.dataset.i);}});
 board.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){const m=e.target.closest('.meme');if(m){e.preventDefault();tippen(+m.dataset.i);}}});
 // ================= Ergebnis =================
 function aktuellerCode(){const h=hashWerte();return gueltig(h.r)?h.r:code(punkte);}

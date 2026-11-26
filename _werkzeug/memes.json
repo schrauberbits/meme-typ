@@ -352,20 +352,6 @@
    "datei": "The-Most-Interesting-Man-In-The-World.jpg"
   },
   {
-   "id": "ight-imma-head-out",
-   "name": "SpongeBob – Ight Imma Head Out",
-   "quelle": "https://imgflip.com/meme/Spongebob-Ight-Imma-Head-Out",
-   "img": "",
-   "w": {
-    "E": -1,
-    "C": -0.5
-   },
-   "de": "SpongeBob steht auf und geht: Okay, ich bin dann mal weg.",
-   "en": "SpongeBob gets up and leaves: ight, imma head out.",
-   "direkt": "https://imgflip.com/s/meme/Spongebob-Ight-Imma-Head-Out.jpg",
-   "datei": "Spongebob-Ight-Imma-Head-Out.jpg"
-  },
-  {
    "id": "picard-facepalm",
    "name": "Picard Facepalm",
    "quelle": "https://imgflip.com/meme/Captain-Picard-Facepalm",
@@ -392,20 +378,6 @@
    "en": "Panic – calm – panic: the emotional rollercoaster in three panels.",
    "direkt": "https://imgflip.com/s/meme/Panik-Kalm-Panik.png",
    "datei": "Panik-Kalm-Panik.png"
-  },
-  {
-   "id": "sleeping-shaq",
-   "name": "Sleeping Shaq",
-   "quelle": "https://imgflip.com/meme/Sleeping-Shaq",
-   "img": "",
-   "w": {
-    "N": -1,
-    "E": 0.5
-   },
-   "de": "Shaq schläft seelenruhig – erst beim Wichtigen ist er hellwach.",
-   "en": "Shaq sleeps peacefully – only wide awake for what matters.",
-   "direkt": "https://imgflip.com/s/meme/Sleeping-Shaq.jpg",
-   "datei": "Sleeping-Shaq.jpg"
   }
  ]
 }

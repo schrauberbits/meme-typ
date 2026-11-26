@@ -31,7 +31,5 @@ Status: https://schrauberbits.github.io/meme-typ/bilder-status/
 | Waiting Skeleton | `Waiting-Skeleton.jpg` | https://imgflip.com/s/meme/Waiting-Skeleton.jpg |
 | Left Exit 12 Off Ramp | `Left-Exit-12-Off-Ramp.jpg` | https://imgflip.com/s/meme/Left-Exit-12-Off-Ramp.jpg |
 | The Most Interesting Man in the World | `The-Most-Interesting-Man-In-The-World.jpg` | https://imgflip.com/s/meme/The-Most-Interesting-Man-In-The-World.jpg |
-| SpongeBob – Ight Imma Head Out | `Spongebob-Ight-Imma-Head-Out.jpg` | https://imgflip.com/s/meme/Spongebob-Ight-Imma-Head-Out.jpg |
 | Picard Facepalm | `Captain-Picard-Facepalm.jpg` | https://imgflip.com/s/meme/Captain-Picard-Facepalm.jpg |
 | Panik Kalm Panik | `Panik-Kalm-Panik.png` | https://imgflip.com/s/meme/Panik-Kalm-Panik.png |
-| Sleeping Shaq | `Sleeping-Shaq.jpg` | https://imgflip.com/s/meme/Sleeping-Shaq.jpg |

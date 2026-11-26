@@ -1,0 +1,411 @@
+{
+ "bilder_basis": "https://schrauberbits.github.io/meme-typ/bilder/",
+ "memes": [
+  {
+   "id": "this-is-fine",
+   "name": "This Is Fine",
+   "quelle": "https://imgflip.com/meme/This-Is-Fine",
+   "img": "https://i.imgflip.com/wxica.jpg",
+   "w": {
+    "N": -1,
+    "O": -0.5
+   },
+   "de": "Hund sitzt im brennenden Zimmer und sagt: Alles in Ordnung.",
+   "en": "A dog sits in a burning room and says: this is fine.",
+   "direkt": "https://imgflip.com/s/meme/This-Is-Fine.jpg",
+   "datei": "This-Is-Fine.jpg"
+  },
+  {
+   "id": "distracted-boyfriend",
+   "name": "Distracted Boyfriend",
+   "quelle": "https://imgflip.com/meme/Distracted-Boyfriend",
+   "img": "https://i.imgflip.com/1ur9b0.jpg",
+   "w": {
+    "C": -1,
+    "O": 0.5
+   },
+   "de": "Mann dreht sich nach etwas Neuem um, die Begleitung ist empört.",
+   "en": "A man turns to look at something new while his partner is outraged.",
+   "direkt": "https://imgflip.com/s/meme/Distracted-Boyfriend.jpg",
+   "datei": "Distracted-Boyfriend.jpg"
+  },
+  {
+   "id": "fry-take-my-money",
+   "name": "Shut Up and Take My Money",
+   "quelle": "https://imgflip.com/meme/Shut-Up-And-Take-My-Money-Fry",
+   "img": "",
+   "w": {
+    "E": 1,
+    "C": -0.5
+   },
+   "de": "Fry hält begeistert Geldscheine hoch: Nehmt einfach mein Geld!",
+   "en": "Fry eagerly waves cash: shut up and take my money!",
+   "direkt": "https://imgflip.com/s/meme/Shut-Up-And-Take-My-Money-Fry.jpg",
+   "datei": "Shut-Up-And-Take-My-Money-Fry.jpg"
+  },
+  {
+   "id": "grumpy-cat",
+   "name": "Grumpy Cat",
+   "quelle": "https://imgflip.com/meme/Grumpy-Cat",
+   "img": "https://imgflip.com/s/meme/Grumpy-Cat.jpg",
+   "w": {
+    "E": -1,
+    "O": -0.5
+   },
+   "de": "Mürrische Katze, die von nichts begeistert ist.",
+   "en": "A grumpy cat that is unimpressed by everything.",
+   "direkt": "https://imgflip.com/s/meme/Grumpy-Cat.jpg",
+   "datei": "Grumpy-Cat.jpg"
+  },
+  {
+   "id": "leonardo-cheers",
+   "name": "Leonardo DiCaprio Cheers",
+   "quelle": "https://imgflip.com/meme/Leonardo-Dicaprio-Cheers",
+   "img": "",
+   "w": {
+    "E": 1,
+    "A": 0.5
+   },
+   "de": "Gastgeber hebt lächelnd das Glas auf die Runde.",
+   "en": "A host smiles and raises his glass to everyone.",
+   "direkt": "https://imgflip.com/s/meme/Leonardo-Dicaprio-Cheers.jpg",
+   "datei": "Leonardo-Dicaprio-Cheers.jpg"
+  },
+  {
+   "id": "woman-yelling-cat",
+   "name": "Woman Yelling at Cat",
+   "quelle": "https://imgflip.com/meme/Woman-Yelling-At-Cat",
+   "img": "",
+   "w": {
+    "N": 1,
+    "A": -0.5
+   },
+   "de": "Aufgebrachter Vorwurf links, ungerührte Katze am Tisch rechts.",
+   "en": "An upset accusation on the left, an unbothered cat at the table on the right.",
+   "direkt": "https://imgflip.com/s/meme/Woman-Yelling-At-Cat.jpg",
+   "datei": "Woman-Yelling-At-Cat.jpg"
+  },
+  {
+   "id": "change-my-mind",
+   "name": "Change My Mind",
+   "quelle": "https://imgflip.com/meme/Change-My-Mind",
+   "img": "",
+   "w": {
+    "O": 1,
+    "A": -0.5
+   },
+   "de": "Mann am Tisch mit Schild: These aufgestellt – überzeugt mich vom Gegenteil.",
+   "en": "A man at a table with a sign: here is my claim – change my mind.",
+   "direkt": "https://imgflip.com/s/meme/Change-My-Mind.jpg",
+   "datei": "Change-My-Mind.jpg"
+  },
+  {
+   "id": "drake",
+   "name": "Drake Hotline Bling",
+   "quelle": "https://imgflip.com/meme/Drake-Hotline-Bling",
+   "img": "",
+   "w": {
+    "O": -1,
+    "C": 0.5
+   },
+   "de": "Oben abwinken, unten zufrieden zeigen: klare Vorlieben.",
+   "en": "Waving one thing away, happily pointing at the other: clear preferences.",
+   "direkt": "https://imgflip.com/s/meme/Drake-Hotline-Bling.jpg",
+   "datei": "Drake-Hotline-Bling.jpg"
+  },
+  {
+   "id": "oprah",
+   "name": "Oprah – You Get a Car",
+   "quelle": "https://imgflip.com/meme/Oprah-You-Get-A",
+   "img": "",
+   "w": {
+    "A": 1,
+    "E": 0.5
+   },
+   "de": "Moderatorin verteilt begeistert Geschenke an alle.",
+   "en": "A TV host enthusiastically hands out gifts to everyone.",
+   "direkt": "https://imgflip.com/s/meme/Oprah-You-Get-A.jpg",
+   "datei": "Oprah-You-Get-A.jpg"
+  },
+  {
+   "id": "mocking-spongebob",
+   "name": "Mocking SpongeBob",
+   "quelle": "https://imgflip.com/meme/Mocking-Spongebob",
+   "img": "",
+   "w": {
+    "A": -1,
+    "E": 0.5
+   },
+   "de": "SpongeBob äfft eine Aussage spöttisch nach.",
+   "en": "SpongeBob mockingly repeats what someone said.",
+   "direkt": "https://imgflip.com/s/meme/Mocking-Spongebob.jpg",
+   "datei": "Mocking-Spongebob.jpg"
+  },
+  {
+   "id": "surprised-pikachu",
+   "name": "Surprised Pikachu",
+   "quelle": "https://imgflip.com/meme/Surprised-Pikachu",
+   "img": "",
+   "w": {
+    "C": -1,
+    "N": 0.5
+   },
+   "de": "Pikachu ist überrascht von einer absehbaren Folge.",
+   "en": "Pikachu is shocked by an entirely predictable outcome.",
+   "direkt": "https://imgflip.com/s/meme/Surprised-Pikachu.jpg",
+   "datei": "Surprised-Pikachu.jpg"
+  },
+  {
+   "id": "anakin-padme",
+   "name": "Anakin & Padmé",
+   "quelle": "https://imgflip.com/meme/322841258/Anakin-Padme-4-Panel",
+   "img": "",
+   "w": {
+    "N": 1,
+    "E": -0.5
+   },
+   "de": "Sie fragt nach: … zum Guten, oder? Er schweigt.",
+   "en": "She asks: … for the better, right? He stays silent.",
+   "direkt": "https://i.imgflip.com/5c7lwq.png",
+   "datei": "5c7lwq.png"
+  },
+  {
+   "id": "kermit-tea",
+   "name": "Kermit – None of My Business",
+   "quelle": "https://imgflip.com/meme/But-Thats-None-Of-My-Business",
+   "img": "",
+   "w": {
+    "E": -1,
+    "N": -0.5
+   },
+   "de": "Kermit nippt am Tee und hält sich raus.",
+   "en": "Kermit sips his tea and stays out of it.",
+   "direkt": "https://imgflip.com/s/meme/But-Thats-None-Of-My-Business.jpg",
+   "datei": "But-Thats-None-Of-My-Business.jpg"
+  },
+  {
+   "id": "roll-safe",
+   "name": "Roll Safe",
+   "quelle": "https://imgflip.com/meme/Roll-Safe-Think-About-It",
+   "img": "",
+   "w": {
+    "N": -1,
+    "O": 0.5
+   },
+   "de": "Tippt sich an die Schläfe: entspannt einen cleveren Ausweg gefunden.",
+   "en": "Taps his temple: calmly found a clever way out.",
+   "direkt": "https://imgflip.com/s/meme/Roll-Safe-Think-About-It.jpg",
+   "datei": "Roll-Safe-Think-About-It.jpg"
+  },
+  {
+   "id": "ancient-aliens",
+   "name": "Ancient Aliens",
+   "quelle": "https://imgflip.com/meme/Ancient-Aliens",
+   "img": "",
+   "w": {
+    "O": 1,
+    "C": -0.5
+   },
+   "de": "Wilde Theorie mit großer Geste: Außerirdische!",
+   "en": "A wild theory with a big gesture: aliens!",
+   "direkt": "https://imgflip.com/s/meme/Ancient-Aliens.jpg",
+   "datei": "Ancient-Aliens.jpg"
+  },
+  {
+   "id": "old-man-cloud",
+   "name": "Old Man Yells at Cloud",
+   "quelle": "https://imgflip.com/meme/54522231/Old-man-yells-at-cloud",
+   "img": "",
+   "w": {
+    "O": -1,
+    "N": 0.5
+   },
+   "de": "Alter Mann schimpft auf eine Wolke: früher war alles besser.",
+   "en": "An old man yells at a cloud: things were better in the old days.",
+   "direkt": "https://i.imgflip.com/wglmf.jpg",
+   "datei": "wglmf.jpg"
+  },
+  {
+   "id": "hide-the-pain-harold",
+   "name": "Hide the Pain Harold",
+   "quelle": "https://imgflip.com/meme/Hide-the-Pain-Harold",
+   "img": "",
+   "w": {
+    "A": 1,
+    "E": -0.5
+   },
+   "de": "Freundliches Lächeln, obwohl es innen gerade wehtut.",
+   "en": "A friendly smile while it quietly hurts inside.",
+   "direkt": "https://imgflip.com/s/meme/Hide-the-Pain-Harold.jpg",
+   "datei": "Hide-the-Pain-Harold.jpg"
+  },
+  {
+   "id": "batman-slapping-robin",
+   "name": "Batman Slapping Robin",
+   "quelle": "https://imgflip.com/meme/Batman-Slapping-Robin",
+   "img": "",
+   "w": {
+    "A": -1,
+    "C": 0.5
+   },
+   "de": "Batman unterbricht Robin mit einer Ohrfeige: Schluss damit!",
+   "en": "Batman cuts Robin off with a slap: enough!",
+   "direkt": "https://imgflip.com/s/meme/Batman-Slapping-Robin.jpg",
+   "datei": "Batman-Slapping-Robin.jpg"
+  },
+  {
+   "id": "tuxedo-pooh",
+   "name": "Tuxedo Winnie the Pooh",
+   "quelle": "https://imgflip.com/meme/Tuxedo-Winnie-The-Pooh",
+   "img": "",
+   "w": {
+    "C": 1,
+    "A": 0.5
+   },
+   "de": "Pooh im Alltagslook und im Frack: die gepflegte Variante.",
+   "en": "Pooh casual and in a tuxedo: the refined version.",
+   "direkt": "https://imgflip.com/s/meme/Tuxedo-Winnie-The-Pooh.png",
+   "datei": "Tuxedo-Winnie-The-Pooh.png"
+  },
+  {
+   "id": "one-does-not-simply",
+   "name": "One Does Not Simply",
+   "quelle": "https://imgflip.com/meme/One-Does-Not-Simply",
+   "img": "",
+   "w": {
+    "C": 1,
+    "N": -0.5
+   },
+   "de": "Ernste Warnung: Man geht nicht einfach so …",
+   "en": "A serious warning: one does not simply …",
+   "direkt": "https://imgflip.com/s/meme/One-Does-Not-Simply.jpg",
+   "datei": "One-Does-Not-Simply.jpg"
+  },
+  {
+   "id": "spongebob-imagination",
+   "name": "SpongeBob Imagination",
+   "quelle": "https://imgflip.com/meme/Imagination-Spongebob",
+   "img": "",
+   "w": {
+    "O": 1,
+    "E": 0.5
+   },
+   "de": "SpongeBob formt mit den Händen einen Regenbogen: Fantasie!",
+   "en": "SpongeBob makes a rainbow with his hands: imagination!",
+   "direkt": "https://imgflip.com/s/meme/Imagination-Spongebob.jpg",
+   "datei": "Imagination-Spongebob.jpg"
+  },
+  {
+   "id": "grandma-internet",
+   "name": "Grandma Finds the Internet",
+   "quelle": "https://imgflip.com/meme/Grandma-Finds-The-Internet",
+   "img": "",
+   "w": {
+    "O": -1,
+    "A": 0.5
+   },
+   "de": "Oma sitzt staunend und etwas ratlos vor dem Computer.",
+   "en": "Grandma sits in front of the computer, amazed and a bit lost.",
+   "direkt": "https://imgflip.com/s/meme/Grandma-Finds-The-Internet.jpg",
+   "datei": "Grandma-Finds-The-Internet.jpg"
+  },
+  {
+   "id": "waiting-skeleton",
+   "name": "Waiting Skeleton",
+   "quelle": "https://imgflip.com/meme/Waiting-Skeleton",
+   "img": "https://imgflip.com/s/meme/Waiting-Skeleton.jpg",
+   "w": {
+    "C": 1,
+    "E": -0.5
+   },
+   "de": "Skelett auf der Bank: wartet seit Ewigkeiten, pünktlich wie immer.",
+   "en": "A skeleton on a bench: waiting forever, punctual as always.",
+   "direkt": "https://imgflip.com/s/meme/Waiting-Skeleton.jpg",
+   "datei": "Waiting-Skeleton.jpg"
+  },
+  {
+   "id": "left-exit-12",
+   "name": "Left Exit 12 Off Ramp",
+   "quelle": "https://imgflip.com/meme/Left-Exit-12-Off-Ramp",
+   "img": "https://imgflip.com/s/meme/Left-Exit-12-Off-Ramp.jpg",
+   "w": {
+    "C": -1,
+    "O": 0.5
+   },
+   "de": "Auto reißt in letzter Sekunde das Steuer zur Ausfahrt herum.",
+   "en": "A car swerves to the exit at the last second.",
+   "direkt": "https://imgflip.com/s/meme/Left-Exit-12-Off-Ramp.jpg",
+   "datei": "Left-Exit-12-Off-Ramp.jpg"
+  },
+  {
+   "id": "most-interesting-man",
+   "name": "The Most Interesting Man in the World",
+   "quelle": "https://imgflip.com/meme/The-Most-Interesting-Man-In-The-World",
+   "img": "",
+   "w": {
+    "E": 1,
+    "N": -0.5
+   },
+   "de": "Weltmann mit Bart: Ich trinke nicht immer, aber wenn …",
+   "en": "A worldly man with a beard: I don't always … but when I do …",
+   "direkt": "https://imgflip.com/s/meme/The-Most-Interesting-Man-In-The-World.jpg",
+   "datei": "The-Most-Interesting-Man-In-The-World.jpg"
+  },
+  {
+   "id": "ight-imma-head-out",
+   "name": "SpongeBob – Ight Imma Head Out",
+   "quelle": "https://imgflip.com/meme/Spongebob-Ight-Imma-Head-Out",
+   "img": "",
+   "w": {
+    "E": -1,
+    "C": -0.5
+   },
+   "de": "SpongeBob steht auf und geht: Okay, ich bin dann mal weg.",
+   "en": "SpongeBob gets up and leaves: ight, imma head out.",
+   "direkt": "https://imgflip.com/s/meme/Spongebob-Ight-Imma-Head-Out.jpg",
+   "datei": "Spongebob-Ight-Imma-Head-Out.jpg"
+  },
+  {
+   "id": "picard-facepalm",
+   "name": "Picard Facepalm",
+   "quelle": "https://imgflip.com/meme/Captain-Picard-Facepalm",
+   "img": "",
+   "w": {
+    "A": -1,
+    "C": 0.5
+   },
+   "de": "Captain Picard schlägt die Hand vors Gesicht: Ernsthaft?",
+   "en": "Captain Picard puts his face in his hand: seriously?",
+   "direkt": "https://imgflip.com/s/meme/Captain-Picard-Facepalm.jpg",
+   "datei": "Captain-Picard-Facepalm.jpg"
+  },
+  {
+   "id": "panik-kalm-panik",
+   "name": "Panik Kalm Panik",
+   "quelle": "https://imgflip.com/meme/Panik-Kalm-Panik",
+   "img": "https://imgflip.com/s/meme/Panik-Kalm-Panik.png",
+   "w": {
+    "N": 1,
+    "O": 0.5
+   },
+   "de": "Panik – Ruhe – Panik: das Gefühlskarussell in drei Bildern.",
+   "en": "Panic – calm – panic: the emotional rollercoaster in three panels.",
+   "direkt": "https://imgflip.com/s/meme/Panik-Kalm-Panik.png",
+   "datei": "Panik-Kalm-Panik.png"
+  },
+  {
+   "id": "sleeping-shaq",
+   "name": "Sleeping Shaq",
+   "quelle": "https://imgflip.com/meme/Sleeping-Shaq",
+   "img": "",
+   "w": {
+    "N": -1,
+    "E": 0.5
+   },
+   "de": "Shaq schläft seelenruhig – erst beim Wichtigen ist er hellwach.",
+   "en": "Shaq sleeps peacefully – only wide awake for what matters.",
+   "direkt": "https://imgflip.com/s/meme/Sleeping-Shaq.jpg",
+   "datei": "Sleeping-Shaq.jpg"
+  }
+ ]
+}

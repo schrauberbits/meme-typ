@@ -10,7 +10,7 @@ e = html.escape
 UPLOAD = "https://github.com/schrauberbits/meme-typ/upload/main/bilder"
 SYSTEME = [("bigfive", "Big Five", "https://schrauberbits.github.io/meme-bigfive/"), ("mbti", "16 Typen", "https://schrauberbits.github.io/meme-mbti/"),
            ("enneagramm", "Enneagramm", "https://schrauberbits.github.io/meme-enneagramm/")]
-MEMES = [{k: m[k] for k in ("id", "name", "datei", "direkt", "img", "quelle")} for m in MD["memes"]]
+MEMES = [{k: m[k] for k in ("id", "name", "datei", "direkt", "img", "quelle", "kopie")} for m in MD["memes"]]
 
 CSS = """:root{--bg:#f6f6f4;--surface:#fff;--ink:#111318;--ink2:#3b3f47;--muted:#6b7079;--line:#e4e4e0;--accent:#e4472b;--ok:#1f7a4d;--warn:#b54708}
 *{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;background:var(--bg);color:var(--ink);line-height:1.5;-webkit-font-smoothing:antialiased}
@@ -38,25 +38,28 @@ def seite(titel, rumpf, skript):
 
 STATUS = """<div class="eyebrow">Meme-Tests · Bilder</div><h1>Bilder-Status</h1>
 <p>Alle drei Varianten (Big Five, 16 Typen, Enneagramm) laden ihre Bilder aus diesem einen Ordner. Lade jedes fehlende Bild einmal hoch, mit genau dem angezeigten Dateinamen. Der Name stimmt automatisch, wenn du das Bild über den Direktlink speicherst.</p>
-<div class="panel"><b>So geht's</b><ol class="klein"><li>„Bild kopieren“ antippen: Die Seite legt das Bild mit einem Tipp in die Zwischenablage oder speichert es.</li>
-<li>„Bilder hochladen“ antippen, die gespeicherten Dateien auswählen und unten auf „Commit changes“ tippen.</li>
+<div class="panel"><b>So geht's</b><ol class="klein"><li>Bei jedem fehlenden Bild auf „Speichern“ tippen (oder oben „Alle fehlenden speichern“). Die Datei hat dann schon den richtigen Namen.</li>
+<li>„Bilder hochladen“ antippen, auf „choose your files“ tippen, die gespeicherten Dateien auswählen und unten auf „Commit changes“ tippen.</li>
 <li>Nach etwa einer Minute diese Seite neu laden. Hochgeladene Bilder stehen dann auf „vorhanden“.</li></ol>
-<a class="btn" href="%(upload)s">Bilder hochladen</a> <button class="btn ghost" id="alle" type="button">Links der fehlenden kopieren</button> <span id="msg" class="klein muted"></span></div>
+<a class="btn" href="%(upload)s">Bilder hochladen</a> <button class="btn ghost" id="alleSpeichern" type="button">Alle fehlenden speichern</button> <span id="msg" class="klein muted"></span></div>
 <div class="zahlen"><div><b id="nVor">–</b>vorhanden</div><div><b id="nFehlt">–</b>fehlen</div><div><b id="nFrei">–</b>laufen ohne Upload</div></div>
-<div class="panel"><table><thead><tr><th>Bild</th><th>Meme</th><th>Status</th><th class="weg">Dateiname</th><th>Kopieren</th></tr></thead><tbody id="liste"></tbody></table></div>
+<div class="panel"><table><thead><tr><th>Bild</th><th>Meme</th><th>Status</th><th class="weg">Dateiname</th><th>Bild</th></tr></thead><tbody id="liste"></tbody></table></div>
 <p class="klein muted"><a href="../turnier/">Turnier-Stand</a> · %(links)s</p>"""
 
 STATUS_JS = """const M=%s;const B='./../bilder/';
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 let nV=0,nF=0,nFr=0;const fehlend=[];
 function zahl(){document.getElementById('nVor').textContent=nV;document.getElementById('nFehlt').textContent=nF;document.getElementById('nFrei').textContent=nFr;}
-document.getElementById('liste').innerHTML=M.map((m,k)=>'<tr id="z'+k+'"><td><div class="th">…</div></td><td><b>'+esc(m.name)+'</b><div class="klein"><a href="'+esc(m.quelle)+'">Vorlage auf imgflip</a></div></td><td class="st">prüfe …</td><td class="weg"><code>'+esc(m.datei)+'</code></td><td><a class="kopieren" style="text-decoration:none;display:inline-block" href="../kopieren/#'+esc(m.id)+'">Bild kopieren</a></td></tr>').join('');
+document.getElementById('liste').innerHTML=M.map((m,k)=>'<tr id="z'+k+'"><td><div class="th">…</div></td><td><b>'+esc(m.name)+'</b><div class="klein"><a href="'+esc(m.quelle)+'">Vorlage auf imgflip</a></div></td><td class="st">prüfe …</td><td class="weg"><code>'+esc(m.datei)+'</code></td><td><button class="kopieren speichern" type="button" data-k="'+k+'">Speichern</button> <a class="klein" href="../kopieren/#'+esc(m.id)+'">kopieren</a></td></tr>').join('');
 M.forEach((m,k)=>{const img=new Image();img.referrerPolicy='no-referrer';
   img.onload=()=>{const z=document.getElementById('z'+k);z.querySelector('.th').innerHTML='';z.querySelector('.th').appendChild(img);z.querySelector('.st').innerHTML='<span class=ok>vorhanden</span>';nV++;zahl();};
-  img.onerror=()=>{const z=document.getElementById('z'+k);if(m.img){z.querySelector('.st').innerHTML='<span class=frei>läuft über imgflip</span><div class=klein>Upload optional</div>';z.querySelector('.th').innerHTML='<img src="'+esc(m.img)+'" referrerpolicy="no-referrer">';nFr++;}else{z.querySelector('.st').innerHTML='<span class=fehlt>fehlt</span>';z.querySelector('.th').textContent='fehlt';nF++;fehlend.push(location.origin+'/meme-typ/kopieren/#'+m.id);}zahl();};
+  img.onerror=()=>{const z=document.getElementById('z'+k);if(m.img){z.querySelector('.st').innerHTML='<span class=frei>läuft über imgflip</span><div class=klein>Upload optional</div>';z.querySelector('.th').innerHTML='<img src="'+esc(m.img)+'" referrerpolicy="no-referrer">';nFr++;}else{z.querySelector('.st').innerHTML='<span class=fehlt>fehlt</span>';z.querySelector('.th').textContent='fehlt';nF++;fehlend.push(m.id);fehlendIdx.push(k);}zahl();};
   img.src=B+encodeURIComponent(m.datei)+'?v='+Date.now();});
 async function kopiere(t){try{await navigator.clipboard.writeText(t);return true;}catch(e){const a=document.createElement('textarea');a.value=t;document.body.appendChild(a);a.select();const ok=document.execCommand('copy');a.remove();return ok;}}
-document.getElementById('alle').onclick=async()=>{const ok=await kopiere(fehlend.join('\\n'));document.getElementById('msg').textContent=ok?fehlend.length+' Links kopiert':'Kopieren nicht möglich';};"""
+const fehlendIdx=[];
+async function speichere(k){const m=M[k];const r=await fetch(m.kopie,{mode:'cors',referrerPolicy:'no-referrer'});if(!r.ok)throw new Error('HTTP '+r.status);const b=await r.blob();const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=m.datei;document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove();},4000);}
+document.addEventListener('click',async ev=>{const b=ev.target.closest('.speichern');if(!b)return;const alt=b.textContent;b.textContent='…';try{await speichere(+b.dataset.k);b.textContent='Gespeichert';}catch(e){b.textContent='Fehler';}setTimeout(()=>b.textContent=alt,2500);});
+document.getElementById('alleSpeichern').onclick=async()=>{const msg=document.getElementById('msg');if(!fehlendIdx.length){msg.textContent='Es fehlt kein Bild.';return;}let n=0;for(const k of fehlendIdx){msg.textContent='Speichere '+(n+1)+' von '+fehlendIdx.length+' …';try{await speichere(k);n++;}catch(e){}await new Promise(r=>setTimeout(r,700));}msg.textContent=n+' Bilder gespeichert. Fragt der Browser, ob mehrere Downloads erlaubt sind, bitte zulassen.';};"""
 
 TURNIER = """<div class="eyebrow">Meme-Tests · Turnier</div><h1>Welche Memes tragen den Test?</h1>
 <p>Jeder Test zieht 20 von %(n)d Memes. Gezählt wird je Meme, in wie vielen begonnenen Tests es vorkam und wie viele davon fertig wurden. Memes mit hoher Fertig-Quote halten die Leute im Test, Memes mit niedriger Quote sind Kandidaten zum Austauschen. Unter 20 begonnenen Tests ist die Quote noch Zufall.</p>

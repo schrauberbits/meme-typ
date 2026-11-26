@@ -1,6 +1,6 @@
 # meme-typ
 
-Welcher Meme-Typ bist du? Ein Spaß-Persönlichkeitstest: Man sortiert 16 klassische Meme-Vorlagen auf 4 Seiten (je 4 Memes, per Ziehen oder Antippen) und bekommt einen von 8 Meme-Typen samt Humor-Profil auf 4 Achsen. Deutsch und Englisch.
+Welcher Meme-Typ bist du? Ein Spaß-Persönlichkeitstest: Der Test beginnt direkt auf der Hauptseite: In 4 Runden stehen links je 4 klassische Meme-Vorlagen, die man rechts auf die Plätze 1–4 einordnet (Antippen = nächster freier Platz, Ziehen = gezielt einordnen oder tauschen, Antippen eines Platzes legt zurück). Man bekommt einen von 8 Meme-Typen samt Humor-Profil auf 4 Achsen. Deutsch und Englisch.
 
 - Seite: https://schrauberbits.github.io/meme-typ/ (englisch: `/en/`)
 - Typ-Seiten: `/typ/<typ>/` und `/en/type/<type>/`, jeweils mit eigenem Vorschaubild (`og/`)
@@ -27,7 +27,7 @@ Welcher Meme-Typ bist du? Ein Spaß-Persönlichkeitstest: Man sortiert 16 klassi
 
 ## Bilder und Rechte
 
-Die Meme-Vorlagen werden von i.imgflip.com geladen (Links, keine Kopien im Repository). Fällt ein Bild aus, erscheint eine Ersatzkarte mit Emoji und Namen. Aufgenommen sind bewusst nur Vorlagen ohne Fotos von Prominenten und ohne Figuren aus Filmen und Serien.
+Die Meme-Vorlagen werden von i.imgflip.com geladen (Links, keine Kopien im Repository). Fällt ein Bild aus, erscheint eine neutrale Ersatzkarte mit dem Namen. Aufgenommen sind bewusst nur Vorlagen ohne Fotos von Prominenten und ohne Figuren aus Filmen und Serien.
 
 Die Datei `04fadd290f4b124950e8f09ef381b6ff.txt` ist der öffentliche IndexNow-Nachweis, kein Zugangsschlüssel.
 

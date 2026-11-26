@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://schrauberbits.github.io/meme-typ/sitemap.xml

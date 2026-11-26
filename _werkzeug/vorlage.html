@@ -1,0 +1,382 @@
+<!doctype html>
+<html lang="{{LANG}}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>{{TITLE}}</title>
+<meta name="description" content="{{DESC}}">
+<link rel="canonical" href="{{CANON}}">
+<link rel="alternate" hreflang="de" href="{{ALT_DE}}">
+<link rel="alternate" hreflang="en" href="{{ALT_EN}}">
+<link rel="alternate" hreflang="x-default" href="{{ALT_EN}}">
+<meta property="og:type" content="website">
+<meta property="og:title" content="{{TITLE}}">
+<meta property="og:description" content="{{DESC}}">
+<meta property="og:url" content="{{CANON}}">
+<meta property="og:image" content="{{OG}}">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#ff5a36">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔥</text></svg>">
+<style>
+:root{--bg:#fffaf2;--card:#fff;--ink:#1d1d1f;--muted:#6b6b70;--line:#ece7dd;--accent:#ff5a36;--accent2:#ffb36b;--soft:#f4f0e8}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{font-family:system-ui,-apple-system,"Segoe UI",Roboto,Inter,sans-serif;background:var(--bg);color:var(--ink);line-height:1.45;-webkit-text-size-adjust:100%}
+.wrap{max-width:520px;margin:0 auto;padding:14px 16px 40px}
+.top{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:6px}
+.brand{font-weight:800;text-decoration:none;color:var(--ink);font-size:1.05rem}
+.lang{border:1px solid var(--line);background:var(--card);border-radius:999px;padding:6px 12px;font-size:.85rem;cursor:pointer;color:var(--ink)}
+h1{font-size:1.75rem;line-height:1.15;margin:18px 0 8px}
+h2{font-size:1.25rem;margin:22px 0 8px}
+p{margin:6px 0}
+.muted{color:var(--muted)}
+.btn{display:block;width:100%;border:0;border-radius:16px;padding:15px 18px;font-size:1.05rem;font-weight:700;cursor:pointer;background:var(--ink);color:#fff;text-align:center;text-decoration:none;margin-top:10px}
+.btn.acc{background:var(--accent)}
+.btn.sec{background:var(--soft);color:var(--ink)}
+.btn:disabled{opacity:.35;cursor:not-allowed}
+.link{background:none;border:0;color:var(--muted);text-decoration:underline;font-size:.95rem;cursor:pointer;padding:10px;display:block;margin:4px auto 0}
+.banner{background:#fff1ea;border:1px solid #ffd2c2;border-radius:14px;padding:12px 14px;margin:12px 0}
+.how{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:12px 16px;margin:16px 0}
+.how ol{margin:6px 0 0;padding-left:20px}
+.preview{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin:16px 0}
+.preview div{aspect-ratio:1;border-radius:12px;background:var(--soft);display:flex;align-items:center;justify-content:center;font-size:1.5rem}
+/* Sortier-Seite */
+.prog{display:flex;justify-content:space-between;align-items:center;color:var(--muted);font-size:.9rem;margin:8px 0}
+.dots{display:flex;gap:6px}.dots i{width:9px;height:9px;border-radius:50%;background:#e2ddd2;display:block}.dots i.on{background:var(--accent)}
+.q{font-size:1.25rem;font-weight:800;text-align:center;margin:6px 0 2px}
+.hint{text-align:center;color:var(--muted);font-size:.92rem;margin:0 0 12px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;user-select:none;-webkit-user-select:none}
+.slot{position:relative;border-radius:18px;background:var(--soft);min-height:150px;border:2px dashed transparent;transition:border-color .12s}
+.slot.ziel{border-color:var(--accent)}
+.rank{position:absolute;top:8px;left:8px;z-index:3;width:30px;height:30px;border-radius:50%;background:var(--accent);color:#fff;font-weight:800;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 6px rgba(0,0,0,.25);pointer-events:none}
+.slot:nth-child(4) .rank{background:#8a8a8f}
+.card{position:relative;background:var(--card);border-radius:16px;overflow:hidden;box-shadow:0 4px 14px rgba(0,0,0,.09);touch-action:none;cursor:grab;height:100%;display:flex;flex-direction:column;border:3px solid transparent}
+.card.sel{border-color:var(--accent)}
+.card.ziehen{position:fixed;z-index:50;pointer-events:none;box-shadow:0 14px 34px rgba(0,0,0,.28);transform:rotate(-2deg) scale(1.03);cursor:grabbing}
+.bild{aspect-ratio:1/1;background:#f7f4ee;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.bild img{width:100%;height:100%;object-fit:contain;display:block;pointer-events:none}
+.ersatz{font-size:2.6rem;text-align:center;padding:8px}
+.ersatz small{display:block;font-size:.75rem;color:var(--muted);margin-top:6px;line-height:1.2}
+.nm{font-size:.82rem;font-weight:700;padding:7px 9px 8px;line-height:1.2}
+.platz{height:0}
+/* Ergebnis */
+.typ{background:linear-gradient(160deg,#ffb36b,#ff5a36);color:#fff;border-radius:22px;padding:20px 18px;margin-top:14px;text-align:center}
+.typ .em{font-size:3.6rem;line-height:1}
+.typ .klein{opacity:.9;font-size:.9rem;font-weight:600;text-transform:uppercase;letter-spacing:.06em}
+.typ h1{margin:6px 0 6px;font-size:1.9rem}
+.typ .maskottchen{background:rgba(255,255,255,.95);border-radius:14px;margin:12px auto 4px;max-width:260px;overflow:hidden}
+.typ .maskottchen .bild{aspect-ratio:auto;max-height:240px}
+.typ .maskottchen img{max-height:240px}
+.box{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:14px 16px;margin-top:14px}
+.ax{margin:10px 0}
+.ax .l{display:flex;justify-content:space-between;font-size:.95rem;font-weight:600}
+.ax .b{height:10px;background:var(--soft);border-radius:5px;overflow:hidden;margin-top:4px}
+.ax .b i{display:block;height:10px;background:linear-gradient(90deg,var(--accent2),var(--accent));border-radius:5px}
+.ax .b i.f{background:#8a8a8f}
+.top3{padding-left:20px;margin:6px 0}
+.top3 li{margin:4px 0}
+.share{display:grid;gap:8px;margin-top:14px}
+.msg{min-height:1.3em;color:var(--accent);font-size:.92rem;text-align:center;margin-top:6px}
+.rangliste{columns:2;font-size:.85rem;padding-left:22px;margin:8px 0 0}
+.rangliste li{margin:2px 0;break-inside:avoid}
+.vergleich .zahl{font-size:2.4rem;font-weight:800;color:var(--accent)}
+.hide{display:none!important}
+footer{margin-top:30px;font-size:.78rem;color:var(--muted);text-align:center;line-height:1.5}
+footer a{color:var(--muted)}
+noscript .box{margin-top:20px}
+</style>
+<script data-goatcounter="https://schrauberbits.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</head>
+<body>
+<div class="wrap">
+  <div class="top"><a class="brand" href="{{HOME}}" id="brand">🔥 Meme-Typ</a><button class="lang" id="langBtn" type="button">{{LANG_SWITCH}}</button></div>
+
+  <section id="s-start">
+    <h1 id="t-h1">{{H1}}</h1>
+    <p class="muted" id="t-sub">{{SUB}}</p>
+    <div class="banner hide" id="vsBanner"></div>
+    <div class="preview" aria-hidden="true">{{PREVIEW}}</div>
+    <button class="btn acc" id="startBtn" type="button">{{START}}</button>
+    <div class="how"><strong id="t-howT">{{HOW_T}}</strong><ol id="t-how">{{HOW}}</ol></div>
+    <noscript><div class="box">{{NOSCRIPT}}</div></noscript>
+    <div class="box"><strong id="t-typenT">{{TYPEN_T}}</strong><p id="t-typen" class="muted">{{TYPEN_LISTE}}</p></div>
+  </section>
+
+  <section id="s-sort" class="hide">
+    <div class="prog"><span id="seiteTxt"></span><span class="dots" id="dots"></span></div>
+    <div class="q" id="t-q"></div>
+    <p class="hint" id="t-hint"></p>
+    <div class="grid" id="grid"></div>
+    <button class="btn" id="weiterBtn" type="button" disabled></button>
+    <button class="link" id="passtBtn" type="button"></button>
+  </section>
+
+  <section id="s-erg" class="hide">
+    <div class="typ">
+      <div class="klein" id="t-dein"></div>
+      <div class="em" id="ergEmoji"></div>
+      <h1 id="ergName"></h1>
+      <div class="maskottchen" id="ergMeme"></div>
+      <p id="ergText"></p>
+    </div>
+    <div class="box vergleich hide" id="vergleich"></div>
+    <div class="box"><strong id="t-achsen"></strong><div id="achsen"></div></div>
+    <div class="box"><strong id="t-warum"></strong><ol class="top3" id="warum"></ol>
+      <p><strong id="t-plus"></strong> <span id="ergPlus"></span><br><strong id="t-acht"></strong> <span id="ergAcht"></span></p></div>
+    <div class="share">
+      <button class="btn acc" id="storyBtn" type="button"></button>
+      <button class="btn" id="vsBtn" type="button"></button>
+      <button class="btn sec" id="kopierBtn" type="button"></button>
+      <div class="msg" id="msg" role="status"></div>
+    </div>
+    <details class="box"><summary id="t-rang"></summary><ol class="rangliste" id="rangliste"></ol></details>
+    <button class="link" id="nochmalBtn" type="button"></button>
+  </section>
+
+  <footer id="fuss">{{FUSS}}</footer>
+</div>
+<script>
+const D={{DATEN}};
+const START_LANG="{{LANG}}";
+const ROOT="{{ROOT}}";
+// ================= Texte =================
+const T={
+ de:{h1:"Welcher Meme-Typ bist du?",sub:"Sortiere 16 klassische Meme-Vorlagen nach deinem Geschmack – dein Humor verrät, welcher von 8 Meme-Typen du bist. Dauert etwa 2 Minuten.",start:"Test starten",startVs:"Test machen und vergleichen",howT:"So geht's",how:["Auf jeder der 4 Seiten siehst du 4 Memes.","Zieh sie in deine Reihenfolge: Platz 1 oben links ist dein Favorit, Platz 4 unten rechts gefällt dir am wenigsten.","Am Ende bekommst du deinen Meme-Typ, dein Humor-Profil und ein Bild zum Teilen."],
+  typenT:"Die 8 Meme-Typen",seite:(n)=>"Seite "+n+" von 4",q:"Zieh die Memes in deine Reihenfolge",hint:"Platz 1 = finde ich am besten. Ziehen oder zwei Memes nacheinander antippen zum Tauschen.",weiter:"Weiter",fertig:"Ergebnis zeigen",passt:"Passt so – das ist meine Reihenfolge",
+  dein:"Dein Meme-Typ",achsen:"Dein Humor-Profil",warum:"Warum? Deine Top 3",plus:"Stärke:",acht:"Vorsicht:",story:"📸 Story-Bild teilen",vs:"🤝 Freunde vergleichen lassen",kopier:"🔗 Link kopieren",rang:"Deine ganze Rangliste",nochmal:"Nochmal von vorn",
+  vsBanner:(n)=>"Jemand hat dir sein Ergebnis geschickt: <strong>"+n+"</strong>. Mach den Test und sieh, wie ähnlich euer Meme-Humor ist.",
+  vsT:"Euer Meme-Humor stimmt überein zu",vsBeide:"Ihr liebt beide:",vsStreit:"Streitpunkt:",vsFreund:"Dein Gegenüber:",
+  shareText:(n)=>"Ich bin "+n+" 😂 Welcher Meme-Typ bist du?",vsText:(n)=>"Ich bin "+n+". Mach den Meme-Test – wie ähnlich ist unser Humor?",
+  kopiert:"Link kopiert ✓",kopierFehl:"Kopieren ging nicht – halte den Link gedrückt:",geladen:"Bild gespeichert ✓ – jetzt in deiner Story posten",
+  storyKopf:"MEIN MEME-TYP",storyFuss:"Welcher bist du?",lang:"English",bildFehlt:"Bild lädt nicht",
+  grund:(m,a)=>m+" ("+a+")",keineAngabe:"–"},
+ en:{h1:"Which meme type are you?",sub:"Rank 16 classic meme templates by taste – your humor reveals which of 8 meme types you are. Takes about 2 minutes.",start:"Start the test",startVs:"Take the test and compare",howT:"How it works",how:["Each of the 4 pages shows 4 memes.","Drag them into your order: spot 1 (top left) is your favorite, spot 4 (bottom right) your least favorite.","At the end you get your meme type, your humor profile and a picture to share."],
+  typenT:"The 8 meme types",seite:(n)=>"Page "+n+" of 4",q:"Drag the memes into your order",hint:"Spot 1 = my favorite. Drag, or tap two memes one after another to swap them.",weiter:"Next",fertig:"Show my result",passt:"Looks right – this is my order",
+  dein:"Your meme type",achsen:"Your humor profile",warum:"Why? Your top 3",plus:"Strength:",acht:"Careful:",story:"📸 Share story picture",vs:"🤝 Let friends compare",kopier:"🔗 Copy link",rang:"Your full ranking",nochmal:"Start over",
+  vsBanner:(n)=>"Someone sent you their result: <strong>"+n+"</strong>. Take the test and see how similar your meme humor is.",
+  vsT:"Your meme humor matches by",vsBeide:"You both love:",vsStreit:"You disagree on:",vsFreund:"Your friend:",
+  shareText:(n)=>"I'm "+n+" 😂 Which meme type are you?",vsText:(n)=>"I'm "+n+". Take the meme test – how similar is our humor?",
+  kopiert:"Link copied ✓",kopierFehl:"Copy failed – long-press the link:",geladen:"Picture saved ✓ – now post it to your story",
+  storyKopf:"MY MEME TYPE",storyFuss:"Which one are you?",lang:"Deutsch",bildFehlt:"Image not loading",
+  grund:(m,a)=>m+" ("+a+")",keineAngabe:"–"}
+};
+// ================= Grundlagen =================
+const $=id=>document.getElementById(id);
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+let L=START_LANG;
+try{const pl=new URLSearchParams(location.search).get('lang');if(pl==='de'||pl==='en')L=pl;}catch(e){}
+const t=()=>T[L];
+const M=D.memes, N=M.length, AX=D.achsen.map(a=>a.id);
+const memeIdx={};M.forEach((m,i)=>memeIdx[m.id]=i);
+// ================= Kennung (ref) und Zählung =================
+const params=new URLSearchParams(location.search);
+const REF=(params.get('ref')||'direkt').toLowerCase().replace(/[^a-z0-9-]/g,'').slice(0,40)||'direkt';
+const REF_W=REF.endsWith('-w')?REF:REF+'-w';
+const gezaehlt={};
+function senden(path,title,versuch){
+  try{if(window.goatcounter&&window.goatcounter.count){window.goatcounter.count({path,title,event:true});return;}}catch(e){return;}
+  if(versuch<40)setTimeout(()=>senden(path,title,versuch+1),250);
+}
+function zaehle(art,einmal=true){const key='meme-'+art+'--'+REF;if(einmal&&gezaehlt[key])return;gezaehlt[key]=1;senden(key,'Meme-Typ: '+art+' ('+REF+')',0);}
+// ================= Zustand =================
+let seiten=[], seite=0, bewegt=false, punkte=new Array(N).fill(0), vsCode=null, auswahl=null;
+function mischen(a){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+const gueltig=c=>typeof c==='string'&&/^[0-3]{16}$/.test(c);
+function hashWerte(){const h=new URLSearchParams(location.hash.slice(1));return {vs:h.get('vs'),r:h.get('r')};}
+// ================= Rechnung =================
+// Platz 1–4 → 3/2/1/0 Punkte; Achse = gewichteter Durchschnitt der Punkte (0–3) → Prozent
+function profil(p){
+  const out={};
+  AX.forEach(a=>{let s=0,w=0;M.forEach((m,i)=>{const g=(m.w&&m.w[a])||0;s+=g*p[i];w+=g;});out[a]=w?s/w:1.5;});
+  return out;
+}
+function typVon(pr){
+  const d=AX.map(a=>pr[a]-1.5);
+  let best=null,bw=-1e9;
+  // Mischtypen ×1,3, damit bei zufälliger Sortierung jeder der 8 Typen etwa gleich oft (10–15 %) vorkommt
+  D.typen.forEach(ty=>{const v=AX.map(a=>ty.p[a]||0);const n=Math.hypot(...v)||1;const z=v.filter(x=>x).length>1?1.3:1;const s=d.reduce((x,y,i)=>x+y*v[i],0)/n*z;if(s>bw+1e-9){bw=s;best=ty;}});
+  return best;
+}
+// Top 3 = die Seitensieger (3 Punkte), geordnet nach Passung zum Ergebnis-Typ
+function top3(p,ty){const v=i=>AX.reduce((s,a)=>s+((M[i].w[a]||0)*(ty.p[a]||0)),0);return M.map((m,i)=>i).filter(i=>p[i]===3).sort((a,b)=>v(b)-v(a)||a-b).slice(0,3);}
+const code=p=>p.join('');
+const vonCode=c=>c.split('').map(Number);
+const prozent=x=>Math.round(x/3*100);
+// ================= Darstellung Karte =================
+function bildHtml(m){
+  return '<div class="bild"><img src="'+esc(m.img)+'" alt="'+esc(m.name+' – '+m[L])+'" referrerpolicy="no-referrer" loading="eager" decoding="async" onerror="this.parentNode.innerHTML=\'<div class=ersatz>'+esc(m.emoji)+'<small>'+esc(m.name)+'</small></div>\'"></div>';
+}
+function karteHtml(i){const m=M[i];return '<div class="card" data-i="'+i+'" tabindex="0" role="button" aria-label="'+esc(m.name)+'">'+bildHtml(m)+'<div class="nm">'+esc(m.name)+'</div></div>';}
+// ================= Sprache =================
+function texte(){
+  const x=t();
+  document.documentElement.lang=L;
+  $('t-h1').textContent=x.h1;$('t-sub').textContent=x.sub;
+  $('startBtn').textContent=vsCode?x.startVs:x.start;
+  $('t-howT').textContent=x.howT;$('t-how').innerHTML=x.how.map(s=>'<li>'+esc(s)+'</li>').join('');
+  $('t-typenT').textContent=x.typenT;$('t-typen').textContent=D.typen.map(ty=>ty.emoji+' '+ty[L].name).join(' · ');
+  $('t-q').textContent=x.q;$('t-hint').textContent=x.hint;$('passtBtn').textContent=x.passt;
+  $('t-dein').textContent=x.dein;$('t-achsen').textContent=x.achsen;$('t-warum').textContent=x.warum;$('t-plus').textContent=x.plus;$('t-acht').textContent=x.acht;
+  $('storyBtn').textContent=x.story;$('vsBtn').textContent=x.vs;$('kopierBtn').textContent=x.kopier;$('t-rang').textContent=x.rang;$('nochmalBtn').textContent=x.nochmal;
+  $('langBtn').textContent=x.lang;
+  if(vsCode){const ty=typVon(profil(vonCode(vsCode)));$('vsBanner').innerHTML=x.vsBanner(esc(ty.emoji+' '+ty[L].name));$('vsBanner').classList.remove('hide');}
+  $('fuss').innerHTML=L==='de'?FUSS_DE:FUSS_EN;
+  if(!$('s-sort').classList.contains('hide'))seiteZeigen();
+  if(!$('s-erg').classList.contains('hide'))ergebnisZeigen();
+}
+const FUSS_DE={{FUSS_DE_JS}};
+const FUSS_EN={{FUSS_EN_JS}};
+$('langBtn').onclick=()=>{L=L==='de'?'en':'de';texte();};
+// ================= Ablauf =================
+function zeige(id){['s-start','s-sort','s-erg'].forEach(s=>$(s).classList.toggle('hide',s!==id));window.scrollTo(0,0);}
+function starten(){
+  const idx=mischen(M.map((_,i)=>i));
+  seiten=[0,1,2,3].map(k=>idx.slice(k*4,k*4+4));
+  seite=0;punkte=new Array(N).fill(0);zeige('s-sort');seiteZeigen();
+}
+function seiteZeigen(){
+  const x=t();bewegt=false;auswahl=null;
+  $('seiteTxt').textContent=x.seite(seite+1);
+  $('dots').innerHTML=[0,1,2,3].map(k=>'<i class="'+(k<=seite?'on':'')+'"></i>').join('');
+  $('grid').innerHTML=seiten[seite].map((i,pos)=>'<div class="slot" data-pos="'+pos+'"><span class="rank">'+(pos+1)+'</span>'+karteHtml(i)+'</div>').join('');
+  $('weiterBtn').textContent=seite<3?x.weiter:x.fertig;
+  $('weiterBtn').disabled=true;
+}
+function tausche(a,b){
+  if(a===b)return;const s=seiten[seite];[s[a],s[b]]=[s[b],s[a]];
+  const slots=$('grid').children;const ca=slots[a].querySelector('.card'),cb=slots[b].querySelector('.card');
+  slots[a].appendChild(cb);slots[b].appendChild(ca);
+  bewegt=true;$('weiterBtn').disabled=false;zaehle('nutzung');
+}
+function seiteFertig(){
+  seiten[seite].forEach((i,pos)=>{punkte[i]=3-pos;});
+  if(seite<3){seite++;seiteZeigen();window.scrollTo(0,0);}
+  else{const c=code(punkte);try{history.replaceState(null,'',location.pathname+location.search+'#r='+c+(vsCode?'&vs='+vsCode:''));}catch(e){}zaehle('fertig');if(vsCode)zaehle('vergleich');zeige('s-erg');ergebnisZeigen();}
+}
+$('startBtn').onclick=()=>{zaehle('start');starten();};
+$('weiterBtn').onclick=()=>{if(bewegt)seiteFertig();};
+$('passtBtn').onclick=()=>{zaehle('nutzung');seiteFertig();};
+$('nochmalBtn').onclick=()=>{try{history.replaceState(null,'',location.pathname+location.search+(vsCode?'#vs='+vsCode:''));}catch(e){}zeige('s-start');texte();};
+// ================= Ziehen und Tippen =================
+let zug=null;
+$('grid').addEventListener('pointerdown',e=>{
+  const card=e.target.closest('.card');if(!card)return;
+  const slot=card.parentNode;const r=card.getBoundingClientRect();
+  zug={card,von:+slot.dataset.pos,x0:e.clientX,y0:e.clientY,dx:e.clientX-r.left,dy:e.clientY-r.top,w:r.width,h:r.height,aktiv:false,id:e.pointerId,ziel:null};
+  try{card.setPointerCapture(e.pointerId);}catch(_){}
+});
+$('grid').addEventListener('pointermove',e=>{
+  if(!zug||e.pointerId!==zug.id)return;
+  if(!zug.aktiv){if(Math.hypot(e.clientX-zug.x0,e.clientY-zug.y0)<8)return;zug.aktiv=true;
+    const p=document.createElement('div');p.className='platz';zug.card.parentNode.appendChild(p);
+    zug.card.classList.add('ziehen');zug.card.style.width=zug.w+'px';zug.card.style.height=zug.h+'px';}
+  zug.card.style.left=(e.clientX-zug.dx)+'px';zug.card.style.top=(e.clientY-zug.dy)+'px';
+  const el=document.elementFromPoint(e.clientX,e.clientY);const slot=el&&el.closest?el.closest('.slot'):null;
+  [...$('grid').children].forEach(s=>s.classList.toggle('ziel',s===slot&&+s.dataset.pos!==zug.von));
+  zug.ziel=slot?+slot.dataset.pos:null;
+  e.preventDefault();
+});
+function zugEnde(e){
+  if(!zug||(e&&e.pointerId!==zug.id))return;
+  const z=zug;zug=null;
+  [...$('grid').children].forEach(s=>s.classList.remove('ziel'));
+  if(z.aktiv){
+    z.card.classList.remove('ziehen');z.card.style.cssText='';
+    const p=z.card.parentNode.querySelector('.platz');if(p)p.remove();
+    if(z.ziel!==null&&z.ziel!==z.von)tausche(z.von,z.ziel);
+    auswahl=null;[...document.querySelectorAll('.card.sel')].forEach(c=>c.classList.remove('sel'));
+  }else{tippen(z.von);}
+}
+$('grid').addEventListener('pointerup',zugEnde);
+$('grid').addEventListener('pointercancel',e=>{if(zug){zug.ziel=null;zugEnde(e);}});
+function tippen(pos){
+  const cards=[...$('grid').children].map(s=>s.querySelector('.card'));
+  if(auswahl===null){auswahl=pos;cards[pos].classList.add('sel');}
+  else{cards[auswahl].classList.remove('sel');const a=auswahl;auswahl=null;if(a!==pos)tausche(a,pos);}
+}
+$('grid').addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){const c=e.target.closest('.card');if(c){e.preventDefault();tippen(+c.parentNode.dataset.pos);}}});
+// ================= Ergebnis =================
+function aktuellerCode(){const h=hashWerte();return gueltig(h.r)?h.r:code(punkte);}
+function ergebnisZeigen(){
+  const x=t();const p=vonCode(aktuellerCode());const pr=profil(p);const ty=typVon(pr);const mm=M[memeIdx[ty.meme]];
+  $('ergEmoji').textContent=ty.emoji;$('ergName').textContent=ty[L].name;$('ergText').textContent=ty[L].text;
+  $('ergMeme').innerHTML=bildHtml(mm);
+  $('ergPlus').textContent=ty[L].plus;$('ergAcht').textContent=ty[L].achtung;
+  $('achsen').innerHTML=D.achsen.map(a=>'<div class="ax"><div class="l"><span>'+a.symbol+' '+esc(a[L])+'</span><span>'+prozent(pr[a.id])+' %</span></div><div class="b"><i style="width:'+prozent(pr[a.id])+'%"></i></div></div>').join('');
+  const order=M.map((m,i)=>i).sort((a,b)=>p[b]-p[a]||a-b);
+  const top=top3(p,ty);
+  $('warum').innerHTML=top.map(i=>{const m=M[i];const ax=Object.entries(m.w).sort((a,b)=>b[1]-a[1]).slice(0,2).map(([k])=>{const A=D.achsen.find(a=>a.id===k);return A.symbol+' '+A[L];}).join(', ');return '<li><strong>'+esc(m.name)+'</strong> – '+esc(ax)+'</li>';}).join('');
+  $('rangliste').innerHTML=order.map(i=>'<li>'+esc(M[i].emoji+' '+M[i].name)+' <span class="muted">('+['4','3','2','1'][p[i]]+'.)</span></li>').join('');
+  // Vergleich
+  if(vsCode){
+    const q=vonCode(vsCode);const diff=p.reduce((s,v,i)=>s+Math.abs(v-q[i]),0);
+    const pq=profil(q);const axDiff=AX.reduce((s,a)=>s+Math.abs(pr[a]-pq[a]),0)/AX.length; // 0–3
+    const wert=Math.max(0,Math.round(100-(diff/(N*3))*50-(axDiff/3)*50));
+    const tq=typVon(pq);
+    const beide=M.filter((m,i)=>p[i]===3&&q[i]===3).map(m=>m.name);
+    const streit=M.filter((m,i)=>Math.abs(p[i]-q[i])===3).map(m=>m.name);
+    $('vergleich').innerHTML='<div>'+esc(x.vsT)+'</div><div class="zahl">'+wert+' %</div><p>'+esc(x.vsFreund)+' '+esc(tq.emoji+' '+tq[L].name)+'</p>'+(beide.length?'<p><strong>'+esc(x.vsBeide)+'</strong> '+esc(beide.join(', '))+'</p>':'')+(streit.length?'<p><strong>'+esc(x.vsStreit)+'</strong> '+esc(streit.join(', '))+'</p>':'');
+    $('vergleich').classList.remove('hide');
+  }else $('vergleich').classList.add('hide');
+}
+function teilenUrl(){
+  const c=aktuellerCode();const ty=typVon(profil(vonCode(c)));
+  const slug=L==='de'?'typ/'+ty.slug_de+'/':'en/type/'+ty.slug_en+'/';
+  return D.basis+slug+'?ref='+encodeURIComponent(REF_W)+'#vs='+c;
+}
+function meldung(s){$('msg').textContent=s;}
+async function kopieren(text){
+  try{await navigator.clipboard.writeText(text);meldung(t().kopiert);return true;}catch(e){}
+  try{const ta=document.createElement('textarea');ta.value=text;ta.style.position='fixed';ta.style.opacity='0';document.body.appendChild(ta);ta.select();const ok=document.execCommand('copy');ta.remove();if(ok){meldung(t().kopiert);return true;}}catch(e){}
+  $('msg').innerHTML=esc(t().kopierFehl)+'<br><span style="user-select:all;word-break:break-all">'+esc(text)+'</span>';return false;
+}
+$('vsBtn').onclick=async()=>{
+  const ty=typVon(profil(vonCode(aktuellerCode())));const url=teilenUrl();zaehle('teilen',false);
+  if(navigator.share){try{await navigator.share({title:'Meme-Typ',text:t().vsText(ty[L].name),url});return;}catch(e){if(e&&e.name==='AbortError')return;}}
+  kopieren(t().vsText(ty[L].name)+' '+url);
+};
+$('kopierBtn').onclick=()=>{zaehle('teilen',false);kopieren(teilenUrl());};
+// ================= Story-Bild (nur eigene Grafik, keine fremden Bilder) =================
+function storyCanvas(){
+  const x=t();const p=vonCode(aktuellerCode());const pr=profil(p);const ty=typVon(pr);
+  const W=1080,H=1920,c=document.createElement('canvas');c.width=W;c.height=H;const g=c.getContext('2d');
+  const gr=g.createLinearGradient(0,0,W,H);gr.addColorStop(0,'#ffb36b');gr.addColorStop(1,'#ff5a36');g.fillStyle=gr;g.fillRect(0,0,W,H);
+  const F='system-ui,-apple-system,"Segoe UI",Roboto,sans-serif';
+  g.fillStyle='#fff';g.textAlign='center';
+  g.font='700 54px '+F;g.globalAlpha=.9;g.fillText(x.storyKopf,W/2,190);g.globalAlpha=1;
+  g.font='300px "Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif';g.fillText(ty.emoji,W/2,560);
+  g.font='800 92px '+F;wrap(g,ty[L].name,W/2,720,W-140,104);
+  // Achsen
+  g.fillStyle='rgba(255,255,255,.96)';rund(g,80,900,W-160,560,40);g.fill();
+  D.achsen.forEach((a,k)=>{const y=990+k*120,v=prozent(pr[a.id]);g.textAlign='left';g.fillStyle='#1d1d1f';g.font='700 44px '+F;g.fillText(a.symbol+' '+a[L],130,y);
+    g.textAlign='right';g.fillText(v+' %',W-130,y);g.fillStyle='#f0ebe2';rund(g,130,y+22,W-260,24,12);g.fill();g.fillStyle='#ff5a36';rund(g,130,y+22,Math.max(24,(W-260)*v/100),24,12);g.fill();});
+  // Top 3
+  const top=top3(p,ty);
+  g.textAlign='center';g.fillStyle='#fff';g.font='700 46px '+F;g.fillText('Top 3',W/2,1530);
+  g.font='500 42px '+F;top.forEach((i,k)=>g.fillText(M[i].emoji+'  '+M[i].name,W/2,1600+k*62));
+  g.font='800 56px '+F;g.fillText(x.storyFuss,W/2,H-150);g.font='700 46px '+F;g.fillText('schrauberbits.github.io/meme-typ',W/2,H-80);
+  return c;
+}
+function rund(g,x,y,w,h,r){g.beginPath();g.moveTo(x+r,y);g.arcTo(x+w,y,x+w,y+h,r);g.arcTo(x+w,y+h,x,y+h,r);g.arcTo(x,y+h,x,y,r);g.arcTo(x,y,x+w,y,r);g.closePath();}
+function wrap(g,text,x,y,max,lh){const w=text.split(' ');let line='',yy=y;w.forEach((wd,i)=>{const test=line?line+' '+wd:wd;if(g.measureText(test).width>max&&line){g.fillText(line,x,yy);line=wd;yy+=lh;}else line=test;});g.fillText(line,x,yy);}
+$('storyBtn').onclick=async()=>{
+  zaehle('teilen',false);
+  const ty=typVon(profil(vonCode(aktuellerCode())));
+  const blob=await new Promise(r=>storyCanvas().toBlob(r,'image/png'));
+  if(!blob){meldung('PNG?');return;}
+  const datei=new File([blob],'meme-typ.png',{type:'image/png'});
+  if(navigator.canShare&&navigator.canShare({files:[datei]})){try{await navigator.share({files:[datei],text:t().shareText(ty[L].name)+' '+teilenUrl()});return;}catch(e){if(e&&e.name==='AbortError')return;}}
+  const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='meme-typ.png';document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove();},2000);meldung(t().geladen);
+};
+// ================= Start =================
+(function init(){
+  const h=hashWerte();
+  if(gueltig(h.vs))vsCode=h.vs;
+  texte();
+  if(gueltig(h.r)){punkte=vonCode(h.r);zeige('s-erg');ergebnisZeigen();}
+})();
+</script>
+</body>
+</html>

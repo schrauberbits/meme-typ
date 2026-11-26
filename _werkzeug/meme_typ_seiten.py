@@ -38,25 +38,24 @@ def seite(titel, rumpf, skript):
 
 STATUS = """<div class="eyebrow">Meme-Tests · Bilder</div><h1>Bilder-Status</h1>
 <p>Alle drei Varianten (Big Five, 16 Typen, Enneagramm) laden ihre Bilder aus diesem einen Ordner. Lade jedes fehlende Bild einmal hoch, mit genau dem angezeigten Dateinamen. Der Name stimmt automatisch, wenn du das Bild über den Direktlink speicherst.</p>
-<div class="panel"><b>So geht's</b><ol class="klein"><li>Direktlink öffnen, Bild speichern (am Handy: lange drücken, „Bild sichern“ bzw. „Herunterladen“).</li>
+<div class="panel"><b>So geht's</b><ol class="klein"><li>„Bild kopieren“ antippen: Die Seite legt das Bild mit einem Tipp in die Zwischenablage oder speichert es.</li>
 <li>„Bilder hochladen“ antippen, die gespeicherten Dateien auswählen und unten auf „Commit changes“ tippen.</li>
 <li>Nach etwa einer Minute diese Seite neu laden. Hochgeladene Bilder stehen dann auf „vorhanden“.</li></ol>
-<a class="btn" href="%(upload)s">Bilder hochladen</a> <button class="btn ghost" id="alle" type="button">Alle fehlenden Links kopieren</button> <span id="msg" class="klein muted"></span></div>
+<a class="btn" href="%(upload)s">Bilder hochladen</a> <button class="btn ghost" id="alle" type="button">Links der fehlenden kopieren</button> <span id="msg" class="klein muted"></span></div>
 <div class="zahlen"><div><b id="nVor">–</b>vorhanden</div><div><b id="nFehlt">–</b>fehlen</div><div><b id="nFrei">–</b>laufen ohne Upload</div></div>
-<div class="panel"><table><thead><tr><th>Bild</th><th>Meme</th><th>Status</th><th class="weg">Dateiname</th><th>Direktlink</th></tr></thead><tbody id="liste"></tbody></table></div>
+<div class="panel"><table><thead><tr><th>Bild</th><th>Meme</th><th>Status</th><th class="weg">Dateiname</th><th>Kopieren</th></tr></thead><tbody id="liste"></tbody></table></div>
 <p class="klein muted"><a href="../turnier/">Turnier-Stand</a> · %(links)s</p>"""
 
 STATUS_JS = """const M=%s;const B='./../bilder/';
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 let nV=0,nF=0,nFr=0;const fehlend=[];
 function zahl(){document.getElementById('nVor').textContent=nV;document.getElementById('nFehlt').textContent=nF;document.getElementById('nFrei').textContent=nFr;}
-document.getElementById('liste').innerHTML=M.map((m,k)=>'<tr id="z'+k+'"><td><div class="th">…</div></td><td><b>'+esc(m.name)+'</b><div class="klein"><a href="'+esc(m.quelle)+'">Vorlage auf imgflip</a></div></td><td class="st">prüfe …</td><td class="weg"><code>'+esc(m.datei)+'</code></td><td><button class="kopieren" data-u="'+esc(m.direkt)+'">Kopieren</button> <a class="klein" href="'+esc(m.direkt)+'">öffnen</a></td></tr>').join('');
+document.getElementById('liste').innerHTML=M.map((m,k)=>'<tr id="z'+k+'"><td><div class="th">…</div></td><td><b>'+esc(m.name)+'</b><div class="klein"><a href="'+esc(m.quelle)+'">Vorlage auf imgflip</a></div></td><td class="st">prüfe …</td><td class="weg"><code>'+esc(m.datei)+'</code></td><td><a class="kopieren" style="text-decoration:none;display:inline-block" href="../kopieren/#'+esc(m.id)+'">Bild kopieren</a></td></tr>').join('');
 M.forEach((m,k)=>{const img=new Image();img.referrerPolicy='no-referrer';
   img.onload=()=>{const z=document.getElementById('z'+k);z.querySelector('.th').innerHTML='';z.querySelector('.th').appendChild(img);z.querySelector('.st').innerHTML='<span class=ok>vorhanden</span>';nV++;zahl();};
-  img.onerror=()=>{const z=document.getElementById('z'+k);if(m.img){z.querySelector('.st').innerHTML='<span class=frei>läuft über imgflip</span><div class=klein>Upload optional</div>';z.querySelector('.th').innerHTML='<img src="'+esc(m.img)+'" referrerpolicy="no-referrer">';nFr++;}else{z.querySelector('.st').innerHTML='<span class=fehlt>fehlt</span>';z.querySelector('.th').textContent='fehlt';nF++;fehlend.push(m.direkt);}zahl();};
+  img.onerror=()=>{const z=document.getElementById('z'+k);if(m.img){z.querySelector('.st').innerHTML='<span class=frei>läuft über imgflip</span><div class=klein>Upload optional</div>';z.querySelector('.th').innerHTML='<img src="'+esc(m.img)+'" referrerpolicy="no-referrer">';nFr++;}else{z.querySelector('.st').innerHTML='<span class=fehlt>fehlt</span>';z.querySelector('.th').textContent='fehlt';nF++;fehlend.push(location.origin+'/meme-typ/kopieren/#'+m.id);}zahl();};
   img.src=B+encodeURIComponent(m.datei)+'?v='+Date.now();});
 async function kopiere(t){try{await navigator.clipboard.writeText(t);return true;}catch(e){const a=document.createElement('textarea');a.value=t;document.body.appendChild(a);a.select();const ok=document.execCommand('copy');a.remove();return ok;}}
-document.addEventListener('click',async ev=>{const b=ev.target.closest('.kopieren');if(b){if(await kopiere(b.dataset.u)){b.textContent='Kopiert';setTimeout(()=>b.textContent='Kopieren',1500);}}});
 document.getElementById('alle').onclick=async()=>{const ok=await kopiere(fehlend.join('\\n'));document.getElementById('msg').textContent=ok?fehlend.length+' Links kopiert':'Kopieren nicht möglich';};"""
 
 TURNIER = """<div class="eyebrow">Meme-Tests · Turnier</div><h1>Welche Memes tragen den Test?</h1>
@@ -93,6 +92,38 @@ document.addEventListener('click',ev=>{const b=ev.target.closest('#tabs button')
 laden();"""
 
 
+KOPIE = """<div class="eyebrow">Meme-Tests · Bild kopieren</div><h1 id="titel">Bild kopieren</h1>
+<div class="panel" id="karte" style="text-align:center"><div id="bild" style="min-height:200px;display:flex;align-items:center;justify-content:center;background:#f1f1ee;border-radius:10px;overflow:hidden"></div>
+<p id="status" class="klein muted" style="min-height:1.4em;margin:12px 0"></p>
+<button class="btn" id="kopieren" type="button" style="font-size:1.1rem;padding:16px 26px">Bild kopieren</button>
+<button class="btn ghost" id="speichern" type="button" style="font-size:1.1rem;padding:16px 26px">Bild speichern</button></div>
+<div class="panel"><b>Alle Bilder</b><div id="alle" class="klein" style="display:flex;flex-wrap:wrap;gap:6px;margin-top:8px"></div></div>
+<p class="klein muted"><a href="../bilder-status/">Bilder-Status</a> · <a href="https://github.com/schrauberbits/meme-typ/upload/main/bilder">Bilder hochladen</a></p>"""
+
+KOPIE_JS = """const M=%s;
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const $=id=>document.getElementById(id);
+let m=null,pngPromise=null,blobRoh=null;
+function waehle(){const id=decodeURIComponent(location.hash.slice(1));m=M.find(x=>x.id===id)||M[0];
+  document.title=m.name+' kopieren';$('titel').textContent=m.name;$('status').textContent='Lade Bild …';
+  $('bild').innerHTML='<img src="'+esc(m.kopie)+'" crossorigin="anonymous" referrerpolicy="no-referrer" style="max-width:100%%;max-height:60vh;display:block">';
+  blobRoh=null;pngPromise=fetch(m.kopie,{mode:'cors',referrerPolicy:'no-referrer'}).then(r=>{if(!r.ok)throw new Error('HTTP '+r.status);return r.blob();}).then(b=>{blobRoh=b;return createImageBitmap(b);}).then(bm=>{const c=document.createElement('canvas');c.width=bm.width;c.height=bm.height;c.getContext('2d').drawImage(bm,0,0);return new Promise((ok,nein)=>c.toBlob(x=>x?ok(x):nein(new Error('PNG')),'image/png'));});
+  pngPromise.then(()=>{$('status').textContent='Bereit.';versucheAuto();}).catch(e=>{$('status').textContent='Bild ließ sich nicht laden: '+e.message;});
+  $('alle').innerHTML=M.map(x=>'<a href="#'+esc(x.id)+'" style="padding:5px 9px;border:1px solid var(--line);border-radius:999px;text-decoration:none;'+(x===m?'background:var(--ink);color:#fff':'')+'">'+esc(x.name)+'</a>').join('');}
+async function kopieren(auto){
+  try{
+    if(!navigator.clipboard||!window.ClipboardItem)throw new Error('Dein Browser kann keine Bilder kopieren – nimm „Bild speichern“.');
+    // ClipboardItem sofort im Tipp anlegen (Safari), das PNG kommt als Promise nach
+    await navigator.clipboard.write([new ClipboardItem({'image/png':pngPromise})]);
+    $('status').innerHTML='<span class=ok>Kopiert</span> – jetzt einfügen, wo du es brauchst.';return true;
+  }catch(e){if(!auto)$('status').textContent=e.message&&e.message.length<140?e.message:'Kopieren nicht möglich – nimm „Bild speichern“.';return false;}
+}
+async function versucheAuto(){if(document.hasFocus&&document.hasFocus()){const ok=await kopieren(true);if(!ok)$('status').textContent='Tippe auf „Bild kopieren“.';}else $('status').textContent='Tippe auf „Bild kopieren“.';}
+$('kopieren').onclick=()=>kopieren(false);
+$('speichern').onclick=async()=>{try{await pngPromise;}catch(e){}const b=blobRoh;if(!b){$('status').textContent='Bild noch nicht geladen.';return;}const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=m.datei;document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove();},2000);$('status').innerHTML='Gespeichert als <code>'+esc(m.datei)+'</code>.';};
+addEventListener('hashchange',waehle);waehle();"""
+
+
 def main():
     links = " · ".join('<a href="%s">%s</a>' % (u, n) for _, n, u in SYSTEME)
     os.makedirs(os.path.join(ZIEL, "bilder"), exist_ok=True)
@@ -108,6 +139,10 @@ def main():
     open(os.path.join(ZIEL, "turnier", "index.html"), "w", encoding="utf-8").write(
         seite("Turnier · Meme-Tests", TURNIER % dict(n=len(MEMES), links=links),
               TURNIER_JS % (json.dumps(MEMES, ensure_ascii=False), json.dumps([[s, n] for s, n, _ in SYSTEME], ensure_ascii=False))))
+    os.makedirs(os.path.join(ZIEL, "kopieren"), exist_ok=True)
+    km = [{k: m[k] for k in ("id", "name", "datei", "kopie")} for m in MD["memes"]]
+    open(os.path.join(ZIEL, "kopieren", "index.html"), "w", encoding="utf-8").write(
+        seite("Bild kopieren · Meme-Tests", KOPIE, KOPIE_JS % json.dumps(km, ensure_ascii=False)))
     print("OK", ZIEL)
 
 
